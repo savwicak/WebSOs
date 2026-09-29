@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scratch game</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body {
+            cursor: url("./cursor.png"), auto !important;
+        }
+        .window-open {
+            animation: windowOpen 0.2s ease-out;
+        }
+    </style>
+</head>
+
+<body
+    class="h-screen overflow-hidden bg-[url('https://i.pinimg.com/1200x/75/fd/13/75fd13fd4c6b7925c36742db25e8e925.jpg')] bg-cover bg-center bg-no-repeat font-mono"
+>
+<!-- https://i.pinimg.com/originals/09/4e/c1/094ec1517789527ec7d5ac9a633d053e.gif -->
+    <div class="absolute z-50 flex w-full justify-between bg-white backdrop-blur-[10px]">
+        <p class="ml-4 text-xl font-bold">
+            SavOS (WebSOs)
+        </p>
+
+        <p id="timeElement" class="mr-4 text-xl font-bold">
+            hi time
+        </p>
+    </div>
+
+    <div id="desktopApps" class="flex flex-wrap gap-2 pt-10 pl-3">
+        <div>
+            <div
+                id="helloIcon"
+                class="desktop-icon w-fit cursor-pointer p-1 text-center"
+            >
+                <img
+                    src="assets/ball.png"
+                    class="h-16 w-16 rounded-2xl"
+                >
+                <p class="m-0 text-white">hello</p>
+            </div>
+
+            <div
+                id="notesIcon"
+                class="desktop-icon w-fit cursor-pointer p-1 text-center"
+            >
+                <img
+                    src="assets/icon3.png"
+                    class="h-16 w-16"
+                >
+                <p class="m-0 text-white">Notes</p>
+            </div>
+            <div
+                id="myMondayIcon"
+                class="desktop-icon w-fit cursor-pointer p-1 text-center"
+            >
+                <img
+                    src="assets/mymonday.png"
+                    class="h-16 w-16"
+                >
+
+                <p class="m-0 text-white">
+                    My <br> Monday
+                </p>
+            </div>
+            <div
+                id="magicPotionIcon"
+                class="desktop-icon w-fit cursor-pointer p-1 text-center"
+            >
+                <img
+                    src="assets/magicpotion.png"
+                    class="h-16 w-16"
+                >
+
+                <p class="m-0 text-white">
+                    Magic <br> Potion
+                </p>
+            </div>
+            <div
+                id="MAPIcon"
+                class="desktop-icon w-fit cursor-pointer p-1 text-center"
+            >
+                <img
+                    src="assets/MAP.png"
+                    class="h-16 w-16"
+                >
+
+                <p class="m-0 text-white">
+                    M.A.P
+                </p>
+            </div>
+        </div>
+        <div>
+            <div
+                id="riseInDangerIcon"
+                class="desktop-icon w-fit cursor-pointer p-1 text-center"
+            >
+                <img
+                    src="assets/riseindanger.png"
+                    class="h-16 w-16"
+                >
+
+                <p class="m-0 text-white">
+                    Rise <br> In <br> Danger
+                </p>
+            </div>
+            <div
+                id="roboEscapeIcon"
+                class="desktop-icon w-fit cursor-pointer p-1 text-center"
+            >
+                <img
+                    src="assets/roboescape.png"
+                    class="h-16 w-16"
+                >
+
+                <p class="m-0 text-white">
+                    Robo <br>  Escape
+                </p>
+            </div>
+            <div
+                id="spaceIcon"
+                class="desktop-icon w-fit cursor-pointer p-1 text-center"
+            >
+                <img
+                    src="assets/space.png"
+                    class="h-16 w-16"
+                >
+
+                <p class="m-0 text-white">
+                    Virus
+                </p>
+            </div>
+            <div
+                id="theDefenderIcon"
+                class="desktop-icon w-fit cursor-pointer p-1 text-center"
+            >
+                <img
+                    src="assets/thedefender.png"
+                    class="h-16 w-16"
+                >
+
+                <p class="m-0 text-white">
+                    The <br> Defender
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div
+        id="notes"
+        class="absolute left-[50%] top-[15%] hidden"
+    >
+        <div
+            class="m-[6px] h-[350px] w-[520px] bg-white shadow-[2px_2px_0_#000,-2px_-2px_0_#fff]"
+        >
+            <div
+                id="notesheader"
+                class="flex h-10 items-center justify-between bg-gradient-to-r from-[#FE2482] to-[#FFC0DA] px-2"
+            >
+                <p class="font-bold text-white text-xl">
+                    Notes
+                </p>
+
+                <div class="flex items-center gap-1">
+                    <button
+                        id="notesclose"
+                        class="flex h-5 w-5 cursor-pointer items-center justify-center
+                            border-2 border-t-white border-l-white
+                            border-r-gray-600 border-b-gray-600
+                            bg-[#c0c0c0]
+                            font-mono text-[16px] font-bold leading-none text-black
+                            active:border-t-gray-600 active:border-l-gray-600
+                            active:border-r-white active:border-b-white"
+                    >
+                        ×
+                    </button>
+
+                    <div class="mr-[6px] h-4 w-4"></div>
+                </div>
+            </div>
+            <div class="h-[440px] overflow-y p-5">
+                <div contenteditable="true">
+                    <p>
+                        My 
+                        <strong>VERY IMPORTANT</strong>
+                        Notes
+                    </p>
+
+                    <br>
+
+                    <p>
+                        MY To-Do List
+                    </p>
+
+                    <p>
+                        - Play My Monday <br>
+                        - Play M.A.P <br>
+                        - Play Magic Potion <br>
+                        - Play Rise In Danger Demo <br>
+                        - Delete virus <br>
+                        - Play The Defender
+                    </p>
+
+                    <img
+                        src="assets/icon1.png"
+                        class="w-20 rounded-full"
+                    >
+
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div
+        id="hello"
+        class="absolute left-[60%] top-[45%] hidden"
+    >
+        <div
+            class="m-[6px] h-[280px] w-[520px] bg-white shadow-[2px_2px_0_#000,-2px_-2px_0_#fff]"
+        >
+            <div
+                id="helloheader"
+                class="flex h-10 items-center justify-between bg-gradient-to-r from-[#FE2482] to-[#FFC0DA] px-2"
+            >
+                <p class="text-xl font-bold text-white">
+                    Hello Everyone
+                </p>
+                <div class="flex items-center gap-1">
+
+                    <button
+                        id="helloclose"
+                        class="flex h-5 w-5 cursor-pointer items-center justify-center border-2 border-t-white border-l-white border-r-gray-600 border-b-gray-600 bg-[#c0c0c0] font-mono text-[16px] font-bold leading-none text-black active:border-t-gray-600 active:border-l-gray-600 active:border-r-white active:border-b-white"
+                    >
+                        ×
+                    </button>
+
+                    <div class="mr-[6px] h-4 w-4"></div>
+                </div>
+            </div>
+            <div class="h-[240px] overflow-y-auto p-5">
+                <p>
+                    Hii i'm savanna making a web OS like that full of my games!! 
+                    <br> <br>
+                    all of them was scratch game that i made and i want everyone to play it atleast one time cuz its peak (real) thank you for visiting :D
+                </p>
+                <br>
+                <button
+                    class="border-2 border-t-white border-l-white border-r-gray-600 border-b-gray-600 bg-[#c0c0c0] px-3 py-1 font-mono text-sm text-black shadow-[1px_1px_0_#000] active:border-t-gray-600 active:border-l-gray-600 active:border-r-white active:border-b-white active:shadow-none"
+                >
+                    <a href="https://scratch.mit.edu/users/Savannaa10/">My Scratch Profile!!!</a>
+                </button>
+            </div>
+
+        </div>
+    </div>
+    <div
+        id="myMonday"
+        class="absolute left-[3%] top-[15%] hidden"
+    >
+        <div
+            class="m-[6px] h-[480px] w-[520px] bg-white shadow-[2px_2px_0_#000,-2px_-2px_0_#fff]"
+        >
+            <div
+                id="myMondayheader"
+                class="flex h-10 items-center justify-between bg-gradient-to-r from-[#FE2482] to-[#FFC0DA] px-2"
+            >
+                <p class="font-bold text-white text-xl">
+                    My Monday Version 0.1.1
+                </p>
+
+                <div class="flex items-center gap-1">
+                    <button
+                        id="myMondayclose"
+                        class="flex h-5 w-5 cursor-pointer items-center justify-center
+                            border-2 border-t-white border-l-white
+                            border-r-gray-600 border-b-gray-600
+                            bg-[#c0c0c0]
+                            font-mono text-[16px] font-bold leading-none text-black
+                            active:border-t-gray-600 active:border-l-gray-600
+                            active:border-r-white active:border-b-white"
+                    >
+                        ×
+                    </button>
+
+                    <div class="mr-[6px] h-4 w-4"></div>
+                </div>
+            </div>
+            <div class="h-[500px] p-2">
+                <iframe src="https://scratch.mit.edu/projects/1174847576/embed" allowtransparency="true" width="500" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    <div
+        id="magicPotion"
+        class="absolute left-[30%] top-[45%] hidden"
+    >
+        <div
+            class="m-[6px] h-[480px] w-[520px] bg-white shadow-[2px_2px_0_#000,-2px_-2px_0_#fff]"
+        >
+            <div
+                id="magicPotionheader"
+                class="flex h-10 items-center justify-between bg-gradient-to-r from-[#FE2482] to-[#FFC0DA] px-2"
+            >
+                <p class="font-bold text-white text-xl">
+                    Magic Potion Version 2.0
+                </p>
+
+                <div class="flex items-center gap-1">
+                    <button
+                        id="magicPotionclose"
+                        class="flex h-5 w-5 cursor-pointer items-center justify-center
+                            border-2 border-t-white border-l-white
+                            border-r-gray-600 border-b-gray-600
+                            bg-[#c0c0c0]
+                            font-mono text-[16px] font-bold leading-none text-black
+                            active:border-t-gray-600 active:border-l-gray-600
+                            active:border-r-white active:border-b-white"
+                    >
+                        ×
+                    </button>
+
+                    <div class="mr-[6px] h-4 w-4"></div>
+                </div>
+            </div>
+            <div class="h-[500px] p-2">
+                <iframe src="https://scratch.mit.edu/projects/753803445/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div
+        id="MAP"
+        class="absolute left-[60%] top-[30%] hidden"
+    >
+        <div
+            class="m-[6px] h-[480px] w-[520px] bg-white shadow-[2px_2px_0_#000,-2px_-2px_0_#fff]"
+        >
+            <div
+                id="MAPheader"
+                class="flex h-10 items-center justify-between bg-gradient-to-r from-[#FE2482] to-[#FFC0DA] px-2"
+            >
+                <p class="font-bold text-white text-xl">
+                    M.A.P (Missing Around Places) 1.1.1
+                </p>
+
+                <div class="flex items-center gap-1">
+                    <button
+                        id="MAPclose"
+                        class="flex h-5 w-5 cursor-pointer items-center justify-center
+                            border-2 border-t-white border-l-white
+                            border-r-gray-600 border-b-gray-600
+                            bg-[#c0c0c0]
+                            font-mono text-[16px] font-bold leading-none text-black
+                            active:border-t-gray-600 active:border-l-gray-600
+                            active:border-r-white active:border-b-white"
+                    >
+                        ×
+                    </button>
+
+                    <div class="mr-[6px] h-4 w-4"></div>
+                </div>
+            </div>
+            <div class="h-[500px] p-2">
+                <iframe src="https://scratch.mit.edu/projects/901132925/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div
+        id="riseInDanger"
+        class="absolute left-[70%] top-[30%] hidden"
+    >
+        <div
+            class="m-[6px] h-[480px] w-[520px] bg-white shadow-[2px_2px_0_#000,-2px_-2px_0_#fff]"
+        >
+            <div
+                id="riseInDangerheader"
+                class="flex h-10 items-center justify-between bg-gradient-to-r from-[#FE2482] to-[#FFC0DA] px-2"
+            >
+                <p class="font-bold text-white text-xl">
+                    Rise In Danger (Secret Demo)
+                </p>
+
+                <div class="flex items-center gap-1">
+                    <button
+                        id="riseInDangerclose"
+                        class="flex h-5 w-5 cursor-pointer items-center justify-center
+                            border-2 border-t-white border-l-white
+                            border-r-gray-600 border-b-gray-600
+                            bg-[#c0c0c0]
+                            font-mono text-[16px] font-bold leading-none text-black
+                            active:border-t-gray-600 active:border-l-gray-600
+                            active:border-r-white active:border-b-white"
+                    >
+                        ×
+                    </button>
+
+                    <div class="mr-[6px] h-4 w-4"></div>
+                </div>
+            </div>
+            <div class="h-[500px] p-2">
+                <iframe src="https://scratch.mit.edu/projects/1131856943/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div
+        id="roboEscape"
+        class="absolute left-[20%] top-[40%] hidden"
+    >
+        <div
+            class="m-[6px] h-[480px] w-[520px] bg-white shadow-[2px_2px_0_#000,-2px_-2px_0_#fff]"
+        >
+            <div
+                id="roboEscapeheader"
+                class="flex h-10 items-center justify-between bg-gradient-to-r from-[#FE2482] to-[#FFC0DA] px-2"
+            >
+                <p class="font-bold text-white text-xl">
+                    Robo Escape Anniversary Editions
+                </p>
+
+                <div class="flex items-center gap-1">
+                    <button
+                        id="roboEscapeclose"
+                        class="flex h-5 w-5 cursor-pointer items-center justify-center
+                            border-2 border-t-white border-l-white
+                            border-r-gray-600 border-b-gray-600
+                            bg-[#c0c0c0]
+                            font-mono text-[16px] font-bold leading-none text-black
+                            active:border-t-gray-600 active:border-l-gray-600
+                            active:border-r-white active:border-b-white"
+                    >
+                        ×
+                    </button>
+
+                    <div class="mr-[6px] h-4 w-4"></div>
+                </div>
+            </div>
+            <div class="h-[500px] p-2">
+                <iframe src="https://scratch.mit.edu/projects/739816224/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div
+        id="space"
+        class="absolute left-[70%] top-[10%] hidden"
+    >
+        <div
+            class="m-[6px] h-[480px] w-[520px] bg-white shadow-[2px_2px_0_#000,-2px_-2px_0_#fff]"
+        >
+            <div
+                id="spaceheader"
+                class="flex h-10 items-center justify-between bg-gradient-to-r from-[#FE2482] to-[#FFC0DA] px-2"
+            >
+                <p class="font-bold text-white text-xl">
+                    Malware (press space)
+                </p>
+
+                <div class="flex items-center gap-1">
+                    <button
+                        id="spaceclose"
+                        class="flex h-5 w-5 cursor-pointer items-center justify-center
+                            border-2 border-t-white border-l-white
+                            border-r-gray-600 border-b-gray-600
+                            bg-[#c0c0c0]
+                            font-mono text-[16px] font-bold leading-none text-black
+                            active:border-t-gray-600 active:border-l-gray-600
+                            active:border-r-white active:border-b-white"
+                    >
+                        ×
+                    </button>
+
+                    <div class="mr-[6px] h-4 w-4"></div>
+                </div>
+            </div>
+            <div class="h-[500px] p-2">
+                <iframe src="https://scratch.mit.edu/projects/724446429/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div
+        id="theDefender"
+        class="absolute left-[60%] top-[25%] hidden"
+    >
+        <div
+            class="m-[6px] h-[480px] w-[520px] bg-white shadow-[2px_2px_0_#000,-2px_-2px_0_#fff]"
+        >
+            <div
+                id="theDefenderheader"
+                class="flex h-10 items-center justify-between bg-gradient-to-r from-[#FE2482] to-[#FFC0DA] px-2"
+            >
+                <p class="font-bold text-white text-xl">
+                    THE DEFENDER (THE GAME) REMAKE VII
+                </p>
+
+                <div class="flex items-center gap-1">
+                    <button
+                        id="theDefenderclose"
+                        class="flex h-5 w-5 cursor-pointer items-center justify-center
+                            border-2 border-t-white border-l-white
+                            border-r-gray-600 border-b-gray-600
+                            bg-[#c0c0c0]
+                            font-mono text-[16px] font-bold leading-none text-black
+                            active:border-t-gray-600 active:border-l-gray-600
+                            active:border-r-white active:border-b-white"
+                    >
+                        ×
+                    </button>
+
+                    <div class="mr-[6px] h-4 w-4"></div>
+                </div>
+            </div>
+            <div class="h-[500px] p-2">
+                <iframe src="https://scratch.mit.edu/projects/750111499/embed" allowtransparency="true" width="485" height="402" frameborder="0" scrolling="no" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
